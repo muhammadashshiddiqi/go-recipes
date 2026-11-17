@@ -6,16 +6,16 @@ import (
 )
 
 type Recipe struct {
-	ID             int64     `json:"id"`
-	UserID         int64     `json:"user_id"`
-	Title          string    `json:"title"`
-	Description    string    `json:"description"`
-	Ingredients    []string  `json:"ingredients"`
-	Steps          []string  `json:"steps"`
-	CookTmeMinutes int32     `json:"cook_time_minutes"`
-	Servings       int32     `json:"servings"`
-	CreatedAt      time.Time `json:"created_at"`
-	UpdatedAt      time.Time `json:"updated_at"`
+	ID              int64     `json:"id"`
+	UserID          int64     `json:"user_id"`
+	Title           string    `json:"title"`
+	Description     string    `json:"description"`
+	Ingredients     []string  `json:"ingredients"`
+	Steps           []string  `json:"steps"`
+	CookTimeMinutes int32     `json:"cook_time_minutes"`
+	Servings        int32     `json:"servings"`
+	CreatedAt       time.Time `json:"created_at"`
+	UpdatedAt       time.Time `json:"updated_at"`
 }
 
 type RecipeInput struct {

@@ -20,7 +20,7 @@ func NewRecipeRepository(db *pgxpool.Pool) *RecipeRepository {
 
 func scanRecipe(row pgx.Row) (*model.Recipe, error) {
 	var r model.Recipe
-	err := row.Scan(&r.ID, &r.UserID, &r.Title, &r.Description, &r.Ingredients, &r.Steps, &r.CookTmeMinutes, &r.Servings, &r.CreatedAt, &r.UpdatedAt)
+	err := row.Scan(&r.ID, &r.UserID, &r.Title, &r.Description, &r.Ingredients, &r.Steps, &r.CookTimeMinutes, &r.Servings, &r.CreatedAt, &r.UpdatedAt)
 
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
@@ -33,9 +33,12 @@ func scanRecipe(row pgx.Row) (*model.Recipe, error) {
 
 func (r *RecipeRepository) Create(ctx context.Context, userID int64, in model.RecipeInput) (*model.Recipe, error) {
 	return scanRecipe(r.db.QueryRow(ctx, `
-	INSERT INTO recipes (user_id, title, description, ingredients, steps, cook_time_minutes, servings) 
-	VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING`+recipeColumns,
+	INSERT INTO recipes (user_id, title, description, ingredients, steps, cook_time_minutes, servings)
+	VALUES ($1, $2, $3, $4, $5, $6, $7)
+	RETURNING
+	`+recipeColumns,
 		userID, in.Title, in.Description, in.Ingredients, in.Steps, in.CookTimeMinutes, in.Servings))
+
 }
 
 func (r *RecipeRepository) GetByID(ctx context.Context, id int64) (*model.Recipe, error) {
@@ -55,7 +58,7 @@ func (r *RecipeRepository) List(ctx context.Context, search string, limit, offse
 		return nil, 0, err
 	}
 
-	query := fmt.Sprintf(`SELECT %s FROM recipes %s ORDER BY created_at DESC, id DESC LIMIT $%d. OFFSET $%d`, recipeColumns, where, len(args)+1, len(args)+2)
+	query := fmt.Sprintf(`SELECT %s FROM recipes %s ORDER BY created_at DESC, id DESC LIMIT $%d OFFSET $%d`, recipeColumns, where, len(args)+1, len(args)+2)
 	rows, err := r.db.Query(ctx, query, append(args, limit, offset)...)
 
 	if err != nil {

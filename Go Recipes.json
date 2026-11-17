@@ -1,0 +1,135 @@
+{
+  "v": 12,
+  "name": "Go Recipes",
+  "folders": [],
+  "requests": [
+    {
+      "v": "17",
+      "endpoint": "<<base-url>>/api/v1/auth/register",
+      "name": "register",
+      "params": [],
+      "headers": [],
+      "method": "POST",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"name\": \"Aisha Samira Ilmi\",\n  \"email\": \"aisha@dev.id\",\n  \"password\": \"Password!00\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "endpoint": "<<base-url>>/api/v1/auth/login",
+      "name": "login",
+      "params": [],
+      "headers": [],
+      "method": "POST",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "\n",
+      "testScript": "",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n  \"email\": \"sidiq@dev.id\",\n  \"password\": \"Password!00\"\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "endpoint": "<<base-url>>/api/v1/recipes",
+      "name": "create recipe",
+      "params": [],
+      "headers": [],
+      "method": "POST",
+      "auth": {
+        "authType": "bearer",
+        "authActive": true,
+        "token": "<<token>>"
+      },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n    \"title\": \"Ayam Goreng Bawang Putih\",\n    \"description\": \"Ayam goreng gurih dengan aroma bawang putih yang kuat, cocok untuk lauk sehari-hari.\",\n    \"ingredients\": [\n      \"500 gr ayam potong\",\n      \"8 siung bawang putih, haluskan\",\n      \"2 cm jahe, haluskan\",\n      \"1 sdt ketumbar bubuk\",\n      \"1/2 sdt merica bubuk\",\n      \"1 sdt garam\",\n      \"1 sdt kaldu bubuk\",\n      \"1 sdm air jeruk nipis\",\n      \"5 siung bawang putih, cincang kasar untuk taburan\",\n      \"Minyak goreng secukupnya\"\n    ],\n    \"steps\": [\n      \"Lumuri ayam dengan air jeruk nipis, diamkan 10 menit, lalu bilas.\",\n      \"Campur bawang putih halus, jahe, ketumbar, merica, garam, dan kaldu bubuk.\",\n      \"Balurkan bumbu ke ayam hingga rata, diamkan minimal 30 menit di kulkas.\",\n      \"Rebus ayam beserta bumbu dengan sedikit air selama 15 menit hingga bumbu meresap, lalu tiriskan.\",\n      \"Panaskan minyak, goreng ayam dengan api sedang hingga kuning keemasan dan matang. Angkat dan tiriskan.\",\n      \"Goreng bawang putih cincang hingga kuning kecokelatan, lalu taburkan di atas ayam.\",\n      \"Sajikan hangat dengan nasi putih dan sambal.\"\n    ],\n    \"cook_time_minutes\": 45,\n    \"servings\": 4\n  }"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "endpoint": "<<base-url>>/api/v1/recipes/1",
+      "name": "read recipe by id",
+      "params": [],
+      "headers": [],
+      "method": "GET",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "endpoint": "<<base-url>>/api/v1/recipes",
+      "name": "read recipes",
+      "params": [],
+      "headers": [],
+      "method": "GET",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "",
+      "testScript": "",
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    }
+  ],
+  "headers": [],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "variables": [
+    {
+      "key": "base-url",
+      "currentValue": "",
+      "initialValue": "http://127.0.0.1:3030",
+      "secret": false
+    },
+    {
+      "key": "token",
+      "currentValue": "",
+      "initialValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE3OTQ5NzI5NDIsImlhdCI6MTc5NDg4NjU0Mn0.jrc7fdtlLK8L3RiChVyj6c0UierNEY4PeepNNVz92vU",
+      "secret": false
+    }
+  ],
+  "description": "",
+  "preRequestScript": "",
+  "testScript": ""
+}

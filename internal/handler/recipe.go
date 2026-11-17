@@ -61,7 +61,7 @@ func (h *RecipeHandler) List(c *fiber.Ctx) error {
 
 	return c.JSON(fiber.Map{
 		"meta": fiber.Map{
-			"page": page,
+			"page":  page,
 			"limit": limit,
 			"total": total,
 		},
@@ -102,7 +102,7 @@ func (h *RecipeHandler) Update(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"data": recipe})
 }
 
-func (h *RecipeHandler) Delete(c *fiber.Ctx) error  {
+func (h *RecipeHandler) Delete(c *fiber.Ctx) error {
 	id, err := parseID(c)
 	if err != nil {
 		return err

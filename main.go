@@ -58,7 +58,8 @@ func main() {
 	api := app.Group("/api/v1")
 	api.Post("/auth/register", authHandler.Register)
 	api.Post("/auth/login", authHandler.Login)
-	api.Get("/recipes", recipeHandler.GetByID)
+	api.Get("/recipes", recipeHandler.List)
+	api.Get("/recipes/:id", recipeHandler.GetByID)
 
 	protected := auth.Protected(cfg.JWTSecret)
 	api.Post("/recipes", protected, recipeHandler.Create)
