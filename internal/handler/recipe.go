@@ -83,22 +83,27 @@ func (h *RecipeHandler) GetByID(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{"data": recipe})
 }
 
-func (h *RecipeHandler) Update(c *fiber.Ctx) error {
+func (h *RecipeHandler) UpdateRecipe(c *fiber.Ctx) error {
 	id, err := parseID(c)
 	if err != nil {
 		return err
 	}
 
-	in, err := parseInput(c)
-	if err != nil {
-		return err
+	var in model.RecipeUpdateInput
+	if err := c.BodyParser(&in); err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "body request tidak valid")
+	}
+	if msg := in.ValidateUpdate(); msg != "" {
+		return fiber.NewError(fiber.StatusUnprocessableEntity, msg)
 	}
 
-	recipe, err := h.repo.Update(c.Context(), id, auth.UserID(c), in)
+	recipe, err := h.repo.Update(c.Context(), id, in)
 	if err != nil {
+		if errors.Is(err, repository.ErrNotFound) {
+			return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"error": "resep tidak ditemukan"})
+		}
 		return err
 	}
-
 	return c.JSON(fiber.Map{"data": recipe})
 }
 

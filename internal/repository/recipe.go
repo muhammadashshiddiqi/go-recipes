@@ -78,13 +78,22 @@ func (r *RecipeRepository) List(ctx context.Context, search string, limit, offse
 	return recipes, total, rows.Err()
 }
 
-func (r *RecipeRepository) Update(ctx context.Context, id, userID int64, in model.RecipeInput) (*model.Recipe, error) {
-	query := `UPDATE recipes SET 
-		title=$1, description=$2, ingredients=$3, steps=$4, 
-		cook_time_minutes=$5, servings=$6, updated_at=NOW()
-		WHERE id=$7 AND user_id=$8 RETURNING ` + recipeColumns
+func (r *RecipeRepository) Update(ctx context.Context, id int64, in model.RecipeUpdateInput) (*model.Recipe, error) {
+	query := `
+		UPDATE recipes SET
+			title             = COALESCE($1, title),
+			description       = COALESCE($2, description),
+			ingredients       = COALESCE($3, ingredients),
+			steps             = COALESCE($4, steps),
+			cook_time_minutes = COALESCE($5, cook_time_minutes),
+			servings          = COALESCE($6, servings),
+			updated_at        = NOW()
+		WHERE id = $7
+		RETURNING ` + recipeColumns
 
-	return scanRecipe(r.db.QueryRow(ctx, query, in.Title, in.Description, in.Ingredients, in.Steps, in.CookTimeMinutes, in.Servings, id, userID))
+	return scanRecipe(r.db.QueryRow(ctx, query,
+		in.Title, in.Description, in.Ingredients, in.Steps,
+		in.CookTimeMinutes, in.Servings, id))
 }
 
 func (r *RecipeRepository) Delete(ctx context.Context, id, userID int64) error {

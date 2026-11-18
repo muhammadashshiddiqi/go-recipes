@@ -1,0 +1,159 @@
+[
+  {
+    "v": 12,
+    "name": "Go Recipes",
+    "folders": [],
+    "requests": [
+      {
+        "v": "17",
+        "name": "register",
+        "method": "POST",
+        "endpoint": "<<base-url>>/api/v1/auth/register",
+        "params": [],
+        "headers": [],
+        "preRequestScript": "",
+        "testScript": "",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "contentType": "application/json",
+          "body": "{\n  \"name\": \"Aina Mafaza Insyirah\",\n  \"email\": \"aina@dev.id\",\n  \"password\": \"Password!00\"\n}"
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      },
+      {
+        "v": "17",
+        "name": "login",
+        "method": "POST",
+        "endpoint": "<<base-url>>/api/v1/auth/login",
+        "params": [],
+        "headers": [],
+        "preRequestScript": "export {};\n\n",
+        "testScript": "",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "contentType": "application/json",
+          "body": "{\n  \"email\": \"sidiq@dev.id\",\n  \"password\": \"Password!00\"\n}"
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      },
+      {
+        "v": "17",
+        "name": "create recipe",
+        "method": "POST",
+        "endpoint": "<<base-url>>/api/v1/recipes",
+        "params": [],
+        "headers": [],
+        "preRequestScript": "",
+        "testScript": "",
+        "auth": {
+          "authType": "bearer",
+          "token": "<<token>>",
+          "authActive": true
+        },
+        "body": {
+          "contentType": "application/json",
+          "body": "{\n  \"title\": \"Nasi Kuning\",\n  \"description\": \"Nasi gurih khas Betawi yang dimasak dengan santan dan rempah aromatik seperti serai, daun salam, dan lengkuas. Cocok disajikan dengan lauk pendamping dan sambal.\",\n  \"ingredients\": [\n    \"500 gr beras putih, cuci bersih dan tiriskan\",\n    \"650 ml santan sedang (dari 1/2 butir kelapa)\",\n    \"2 batang serai, memarkan\",\n    \"3 lembar daun salam\",\n    \"2 lembar daun pandan, ikat simpul\",\n    \"2 lembar daun jeruk, buang tulang daunnya\",\n    \"3 cm lengkuas, memarkan\",\n    \"2 cm jahe, memarkan\",\n    \"1/2 sdt ketumbar bubuk\",\n    \"1,5 sdt garam\",\n    \"1/2 sdt kaldu bubuk (opsional)\",\n    \"Bawang merah goreng secukupnya untuk taburan\"\n  ],\n  \"steps\": [\n    \"Masukkan beras yang sudah dicuci bersih ke dalam panci atau wadah rice cooker.\",\n    \"Tuang santan ke dalam beras, lalu masukkan serai, daun salam, daun pandan, daun jeruk, lengkuas, dan jahe.\",\n    \"Tambahkan ketumbar bubuk, garam, dan kaldu bubuk. Aduk hingga bumbu dan santan tercampur merata.\",\n    \"Jika menggunakan panci, masak beras dengan api sedang sambil sesekali diaduk hingga santan terserap habis (diaron), lalu kukus selama 30 menit hingga matang dan pulen.\",\n    \"Jika menggunakan rice cooker, tekan tombol Cook dan tunggu hingga matang, lalu aduk nasi perlahan dan diamkan selama 10 menit dalam mode Warm.\",\n    \"Angkat nasi uduk, sajikan hangat dengan taburan bawang merah goreng serta pelengkap seperti telur dadar iris, tempe orek, dan sambal kacang.\"\n  ],\n  \"cook_time_minutes\": 45,\n  \"servings\": 4\n}\n"
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      },
+      {
+        "v": "17",
+        "name": "read recipe by id",
+        "method": "GET",
+        "endpoint": "<<base-url>>/api/v1/recipes/1",
+        "params": [],
+        "headers": [],
+        "preRequestScript": "",
+        "testScript": "",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "contentType": null,
+          "body": null
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      },
+      {
+        "v": "17",
+        "name": "read recipes",
+        "method": "GET",
+        "endpoint": "<<base-url>>/api/v1/recipes",
+        "params": [],
+        "headers": [],
+        "preRequestScript": "",
+        "testScript": "",
+        "auth": {
+          "authType": "inherit",
+          "authActive": true
+        },
+        "body": {
+          "contentType": null,
+          "body": null
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      },
+      {
+        "v": "17",
+        "endpoint": "<<base-url>>/api/v1/recipes/3",
+        "name": "update recipe",
+        "params": [],
+        "headers": [],
+        "method": "PATCH",
+        "auth": {
+          "authType": "bearer",
+          "authActive": true,
+          "token": "<<token>>"
+        },
+        "preRequestScript": "",
+        "testScript": "",
+        "body": {
+          "contentType": "application/json",
+          "body": "{\"title\": \"Nasi Uduk\"}"
+        },
+        "requestVariables": [],
+        "responses": {},
+        "description": null
+      }
+    ],
+    "auth": {
+      "authType": "none",
+      "authActive": true
+    },
+    "headers": [],
+    "variables": [
+      {
+        "key": "base-url",
+        "initialValue": "http://127.0.0.1:3030",
+        "currentValue": "",
+        "secret": false
+      },
+      {
+        "key": "token",
+        "initialValue": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3OTUwNzY4MDUsImlhdCI6MTc5NDk5MDQwNX0.XZXu6PDg7BnKS7pbHxTc3Dd2PlO0nnL9PBONjUAHX7s",
+        "currentValue": "",
+        "secret": false
+      }
+    ],
+    "description": "",
+    "preRequestScript": "export {};\n",
+    "testScript": "export {};\n"
+  }
+]

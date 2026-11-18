@@ -63,7 +63,7 @@ func main() {
 
 	protected := auth.Protected(cfg.JWTSecret)
 	api.Post("/recipes", protected, recipeHandler.Create)
-	api.Put("recipes/:id", protected, recipeHandler.Update)
+	api.Patch("/recipes/:id", protected, recipeHandler.UpdateRecipe)
 	api.Delete("/recipes/:id", protected, recipeHandler.Delete)
 
 	go func() {
